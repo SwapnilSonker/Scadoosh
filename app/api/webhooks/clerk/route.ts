@@ -58,8 +58,31 @@ export async function POST(req: Request) {
     })
   }
 
-  console.log(`Webhook with and ID of ${id} and type of ${eventType}`)
-  console.log('Webhook body:', body)
+  if(eventType === "user.updated"){
+    const currentUser = await db.user.findUnique({
+      where: {
+        externalUserId:payload.data.id,
+      }
+    });
+
+    if(!currentUser){
+      return new Response("User not found", { status: 404})
+    }
+
+    await db.user.update({
+      where: {
+        externalUserId: payload.data.username
+      },
+      data:{
+        username: payload.data.username,
+        imageUrl: payload.data.image_url,
+      }
+    })
+  }
+
+
+  // console.log(`Webhook with and ID of ${id} and type of ${eventType}`)
+  // console.log('Webhook body:', body)
  
   return new Response('', { status: 200 })
  
