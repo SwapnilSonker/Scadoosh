@@ -2,6 +2,7 @@ import { Webhook } from 'svix'
 import { headers } from 'next/headers'
 import { WebhookEvent } from '@clerk/nextjs/server'
 import { db } from '@/lib/db'
+
 export async function POST(req: Request) {
 
     const WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SECRET
@@ -84,6 +85,13 @@ export async function POST(req: Request) {
   // console.log(`Webhook with and ID of ${id} and type of ${eventType}`)
   // console.log('Webhook body:', body)
  
+  if (eventType === "user.deleted") {
+    await db.user.delete({
+      where: {
+        externalUserId: payload.data.id,
+      },
+    });
+  }
   return new Response('', { status: 200 })
  
 }
