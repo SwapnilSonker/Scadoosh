@@ -82,8 +82,7 @@ export async function POST(req: Request) {
   }
 
 
-  // console.log(`Webhook with and ID of ${id} and type of ${eventType}`)
-  // console.log('Webhook body:', body)
+
  
   if (eventType === "user.deleted") {
     await db.user.delete({
