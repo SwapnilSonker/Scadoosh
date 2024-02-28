@@ -72,7 +72,7 @@ export async function POST(req: Request) {
 
     await db.user.update({
       where: {
-        externalUserId: payload.data.username
+        externalUserId: payload.data.id
       },
       data:{
         username: payload.data.username,
