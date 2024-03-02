@@ -1,6 +1,7 @@
 import React from "react";
 import Logo from "./logo";
 import Search from "./search";
+import Actions from "./actions";
 
 function Navbar() {
   return (
@@ -8,6 +9,7 @@ function Navbar() {
 items-center shadow-sm">
 <Logo/>
 <Search/>
+<Actions/>
 </nav>
   );
 }
