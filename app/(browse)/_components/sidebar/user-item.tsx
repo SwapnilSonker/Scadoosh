@@ -1,5 +1,6 @@
 "use client"
 import { Button } from "@/components/ui/button";
+import UserAvatar from "@/components/user-avatar";
 import { cn } from "@/lib/utils";
 import { useSidebar } from "@/store/use-sidebar";
 import Link from "next/link";
@@ -26,7 +27,10 @@ const UserItem = ({username, imageUrl , isLive}: UserItemProps) => {
         <Link href={href}>
             <div className={cn("flex items-center w-full gap-x-4",
             collapsed && "justify-center")}>
-                
+                <UserAvatar
+                imageUrl={imageUrl}
+                username={username}
+                isLive={isLive}/>
             </div>
         </Link>
     </Button>
