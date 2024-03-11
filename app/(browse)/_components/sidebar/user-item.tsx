@@ -1,6 +1,7 @@
 "use client"
 import LiveBadge from "@/components/live-badge";
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import UserAvatar from "@/components/user-avatar";
 import { cn } from "@/lib/utils";
 import { useSidebar } from "@/store/use-sidebar";
@@ -49,3 +50,13 @@ const UserItem = ({username, imageUrl , isLive}: UserItemProps) => {
 
 export default UserItem;
 
+export const UserItemSkeleton = () => {
+    return (
+        <li className="flex items-center gap-x-4 px-3 py-2">
+            <Skeleton className="min-h-[32px] min-w-[32px] rounded-full"/>
+            <div className="flex-1">
+                <Skeleton className="h-6"/>
+            </div>
+        </li>
+    )
+}
