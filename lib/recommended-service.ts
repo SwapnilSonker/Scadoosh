@@ -13,9 +13,8 @@ export const getRecommended = async() => {
         const self = await getSelf();
         userId = self.id;
         
-    } catch (error) {
-        userId = null;
-        
+    } catch {
+        userId = null;  
     }
 
     let users: any = [];
