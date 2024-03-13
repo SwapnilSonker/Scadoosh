@@ -1,11 +1,27 @@
+import { isFollowingUser } from "@/lib/follow-service";
+import { getUserByUsername } from "@/lib/user-service";
+import { notFound } from "next/navigation";
+
 interface UserPageProps{
     params:{
         username:string;
     }
 }
-const UserPage = ({params}: UserPageProps) => {
+const UserPage = async({params}: UserPageProps) => {
+
+    const user = await getUserByUsername(params.username);
+
+    if(!user){
+        notFound();
+    }
+
+    const isFollowing = await isFollowingUser(user.id); 
   return (
-    <div>User: {params.username}</div>
+    <div className="flex flex-col gap-y-4">
+    <p>User: {params.username}</p>
+    <p>User Id: {user.id}</p>
+    <p>is Following: {`${isFollowing}`}</p>
+    </div>
   )
 }
 
