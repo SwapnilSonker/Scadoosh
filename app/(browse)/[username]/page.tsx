@@ -25,4 +25,4 @@ const UserPage = async({params}: UserPageProps) => {
   )
 }
 
-export default UserPage
+export default UserPage;
