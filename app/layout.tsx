@@ -1,6 +1,7 @@
 import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import {Toaster} from "sonner";
 import { dark } from "@clerk/themes";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -26,6 +27,7 @@ export default function RootLayout({
           forcedTheme="dark"
           storageKey="scadoosh-theme"
           >
+           <Toaster theme="light" position="bottom-center"/>
             {children}
           </ThemeProvider>
         </body>
