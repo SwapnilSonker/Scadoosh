@@ -43,7 +43,7 @@ export const isFollowingUser = async( id: string) => {
         })
 
         return !!existingFollow;
-    } catch (error) {
+    } catch  {
         return false;
     }
 }
@@ -92,8 +92,10 @@ export const unfollowUser = async(id:string) =>{
     const self = await getSelf();
 
     const otherUser = await db.user.findUnique({
-        where: {id}
-    })
+      where: {
+        id,
+      },
+    });
 
     if(!otherUser){
         throw new Error("User not found");
