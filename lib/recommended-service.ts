@@ -17,6 +17,8 @@ export const getRecommended = async() => {
         userId = null;  
     }
 
+//uncomment the commented query or correct the query when understood
+
     let users = [];
     if (userId) {
         users = await db.user.findMany({
@@ -27,15 +29,24 @@ export const getRecommended = async() => {
                   id: userId,
                 },
               },
-            //   {
-            //     NOT: {
-            //       followedBy: {
-            //         some: {
-            //           followerId: userId,
-            //         },
-            //       },
-            //     },
-            //   },
+              // {
+              //   NOT: {
+              //     followedBy: {
+              //       some: {
+              //         followerId: userId,
+              //       },
+              //     },
+              //   },
+              // },
+              // {
+              //   NOT: {
+              //     followedBy: {
+              //       some: {
+              //         followerId: userId,
+              //       },
+              //     },
+              //   },
+              // },
             ],
           },
           orderBy: [
