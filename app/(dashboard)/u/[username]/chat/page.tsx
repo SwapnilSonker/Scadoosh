@@ -1,6 +1,7 @@
 import { getSelf } from '@/lib/auth-service'
 import { getStreamByUserId } from '@/lib/stream-service';
 import React from 'react'
+import ToggleCard from './_components/toggle-card';
 
 const ChatPage = async() => {
 
@@ -19,7 +20,10 @@ const ChatPage = async() => {
             </h1>
         </div>
         <div className='space-y-4'>
-
+            <ToggleCard
+            field="isChatEnabled"
+            label="Enable Chat"
+            value={stream.isChatEnabled}/>
         </div>
     </div>
   )
