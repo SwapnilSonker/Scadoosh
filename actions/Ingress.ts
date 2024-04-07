@@ -10,7 +10,7 @@ import{
 
 import { db } from "@/lib/db"
 import { getSelf } from "@/lib/auth-service"
-import { TrackSource } from "livekit-server-sdk/dist/index"
+import { TrackSource } from "livekit-server-sdk/dist/proto/livekit_models";
 import { revalidatePath } from "next/cache"
 
 const ingressClient = new IngressClient(process.env.LIVEKIT_API_URL!) 
@@ -22,7 +22,6 @@ const roomService = new RoomServiceClient(
 export const resetIngress = async (hostIdentity: string) => {
     const ingresses = await ingressClient.listIngress({
         roomName: hostIdentity,
-
     })
 
     const rooms = await roomService.listRooms([hostIdentity]);
@@ -39,7 +38,7 @@ export const resetIngress = async (hostIdentity: string) => {
 export const createIngress = async(ingressType:IngressInput) => {
     const self = await getSelf();
 
-    await resetIngress(self.id);
+    await resetIngress(self?.id);
 
     const options: CreateIngressOptions ={
         name: self.username,
@@ -80,5 +79,6 @@ export const createIngress = async(ingressType:IngressInput) => {
         }
     });
 
-    revalidatePath(`/u/${self.username}/keys`)
+    revalidatePath(`/u/${self.username}/keys`);
+    return ingress;
 }
