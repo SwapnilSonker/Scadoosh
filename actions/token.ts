@@ -19,13 +19,16 @@ export const createViewerToken = async(hostIdentity: string) => {
 
     }
 
+    console.log("hostIdentity" , hostIdentity);
     const host = await getUserById(hostIdentity);
+    console.log("host" , host);
 
     if(!host){
         throw new Error("User not found");
     }
 
     const isBlocked = await isBlockedByUser(host.id);
+    console.log("isBlocked" , isBlocked);
 
     if(!isBlocked){
         throw new Error("User is blocked");
@@ -38,7 +41,7 @@ export const createViewerToken = async(hostIdentity: string) => {
         process.env.LIVEKIT_API_KEY!,
         process.env.LIVEKIT_API_SECRET!,
         {
-            identity: isHost ? `host-${self.id}` : self.id,
+            identity: isHost ? `host-${self.id}` : self.id.toString(),
             name: self.username
         }
     )
