@@ -15,6 +15,7 @@ const StreamPlayer = ({user , stream , isFollowing}:StreamPlayerprops) => {
       identity
     } = useViewerToken(user.id);
 
+    console.log("token",token);
     if(!token || !name || !identity){
       return (
         <div>
