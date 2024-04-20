@@ -15,14 +15,13 @@ const StreamPlayer = ({user , stream , isFollowing}:StreamPlayerprops) => {
       identity
     } = useViewerToken(user.id);
 
-    console.log("token",token);
-    if(!token || !name || !identity){
-      return (
-        <div>
-          Cannot watch stream
-        </div>
-      )
-    }
+    // if(!token || !name || !identity){
+    //   return (
+    //     <div>
+    //       Cannot watch stream
+    //     </div>
+    //   )
+    // }
   return (
     <div>Allowed to watch the stream</div>
   )

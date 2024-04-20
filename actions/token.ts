@@ -19,16 +19,13 @@ export const createViewerToken = async(hostIdentity: string) => {
 
     }
 
-    console.log("hostIdentity" , hostIdentity);
     const host = await getUserById(hostIdentity);
-    console.log("host" , host);
 
     if(!host){
         throw new Error("User not found");
     }
 
     const isBlocked = await isBlockedByUser(host.id);
-    console.log("isBlocked" , isBlocked);
 
     if(!isBlocked){
         throw new Error("User is blocked");
